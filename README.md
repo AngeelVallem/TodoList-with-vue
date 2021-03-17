@@ -1,4 +1,4 @@
-# check-list
+# TodoList with vueJS
 
 ## Project setup
 ```
