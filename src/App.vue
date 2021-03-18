@@ -6,14 +6,14 @@
       <div class="row">
         <div
           class="col-12 col-md-5 col-lg-5 my-2 m-md-2 border shadow-sm rounded p-0"
-          v-for="(List, index) in todosList"
-          :key="index"
+          v-for="(List, ListIndex) in todosList"
+          :key="ListIndex"
         >
-          <h2 class="text-center">{{ List.ListName }}</h2>
+          <h2 class="text-center">{{ List.ListName}} {{ListIndex}}</h2>
           <ul
             class="d-flex p-0 d-flex justify-content-between"
-            v-for="(items, id) in List.todos"
-            :key="id"
+            v-for="(items, index) in List.todos"
+            :key="index"
           >
             <li class="mx-2" v-show="items.check === false">
               <input
@@ -22,7 +22,8 @@
                 class="form-check-input mx-2"
               />
               <label class="form-check-label"></label>
-              {{ items.item }}
+              {{ items.item }}  {{index}}
+              
             </li>
             <li
               class="mx-2"
@@ -35,13 +36,13 @@
                 class="form-check-input mx-2"
               />
               <label class="form-check-label"></label>
-              {{ items.item }}
+              {{ items.item }} 
             </li>
             <div>
-              <button class="btn btn-warning shadow-sm">
+              <button class="btn btn-warning shadow-sm" >
                 <i class="far fa-edit"></i>
               </button>
-              <button class="btn btn-danger mx-2 shadow-sm">
+              <button class="btn btn-danger mx-2 shadow-sm" v-on:click="removeItem(ListIndex,index)">
                 <i class="fas fa-minus"></i>
               </button>
             </div>
@@ -54,7 +55,7 @@
           <div class="d-flex w-100 justify-content-center">
             <button
               class="btn btn-danger m-1 my-3 shadow-sm"
-              v-on:click="deleteList(index)"
+              v-on:click="deleteList(ListIndex)"
             >
               <i class="fas fa-trash-alt"></i>
             </button>
@@ -99,7 +100,7 @@ export default {
           ],
         },
         {
-          ListName: "House todos 2",
+          ListName: "House",
           todos: [
             {
               id: Math.random(),
@@ -119,7 +120,7 @@ export default {
           ],
         },
         {
-          ListName: "House todos 2",
+          ListName: "House todos",
           todos: [
             {
               id: Math.random(),
@@ -165,8 +166,12 @@ export default {
     deleteList: function (index) {
       this.todosList.splice(index, 1);
     },
-  },
-};
+    removeItem : function(listIndex,index){
+           this.todosList[listIndex].todos.splice(index,1)
+
+  }
+}
+}
 </script>
 
 <style>
