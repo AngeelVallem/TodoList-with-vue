@@ -22,7 +22,7 @@
                 class="form-check-input mx-2"
               />
               <label class="form-check-label"></label>
-              {{ items.item }}  {{index}}
+              {{ items.item }}  
               
             </li>
             <li
@@ -48,8 +48,13 @@
             </div>
           </ul>
           <div class="d-flex w-100 justify-content-center">
-            <button class="btn btn-success m-1 my-3 shadow-sm">
-              <i class="fas fa-plus"> todo</i>
+            <label for="new-todo"></label>
+    <div class="input-group flex-nowrap p-3">
+  <span class="input-group-text" id="addon-wrapping"><i class="far fa-smile"></i></span>
+  <input type="text"  class="form-control new-todo" placeholder="New TODO :D" aria-label="newTodo" aria-describedby="addon-wrapping" v-model="List.newItem">
+</div>
+            <button class="btn btn-success m-1 my-3 shadow-sm" v-on:click="addTodo(ListIndex)">
+              <i class="fas fa-plus">todo</i>
             </button>
           </div>
           <div class="d-flex w-100 justify-content-center">
@@ -81,6 +86,7 @@ export default {
       todosList: [
         {
           ListName: "Bugs",
+          newItem : '',
           todos: [
             {
               id: Math.random(),
@@ -101,6 +107,7 @@ export default {
         },
         {
           ListName: "House",
+          newItem : '',
           todos: [
             {
               id: Math.random(),
@@ -121,6 +128,7 @@ export default {
         },
         {
           ListName: "House todos",
+          newItem : '',
           todos: [
             {
               id: Math.random(),
@@ -141,6 +149,7 @@ export default {
         },
         {
           ListName: "Market List",
+          newItem : '',
           todos: [
             {
               id: Math.random(),
@@ -168,7 +177,13 @@ export default {
     },
     removeItem : function(listIndex,index){
            this.todosList[listIndex].todos.splice(index,1)
-
+  },
+  addTodo : function(listIndex){
+    this.todosList[listIndex].todos.push({
+      id : Math.random(),
+      item : this.todosList[listIndex].newItem,
+      check : false
+    })
   }
 }
 }
