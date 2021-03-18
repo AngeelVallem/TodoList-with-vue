@@ -1,33 +1,75 @@
 <template>
-<div>
+  <div>
+    <h1 class="text-center t">Welcome to your simple Web CheckLists</h1>
 
-  <h1 class="text-center t"> Welcome to your simple Web Checkist </h1>
-
-   
-  <div class="container">
-    <div class="row">
-
-    <div class="col-12 col-md-5 col-lg-5 my-2 m-md-2 border shadow-sm rounded p-0" v-for="(List,index) in todosList" :key="index">
-      <p class="text-center">{{List.ListName}}</p>  
-      <ul class="d-flex p-0 d-flex justify-content-between" v-for="(items,index) in List.todos" :key="index">
-        <li class="mx-2">{{items.item}}</li> 
-       <div class="btn-group">
-  <button type="button" class="btn btn-info btn-sm dropdown-toggle mx-2" data-bs-toggle="dropdown" aria-expanded="false">
-    Actions
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Separated link</a></li>
-  </ul> 
-</div>
-      </ul>
-    </div>  
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-12 col-md-5 col-lg-5 my-2 m-md-2 border shadow-sm rounded p-0"
+          v-for="(List, index) in todosList"
+          :key="index"
+        >
+          <h2 class="text-center">{{ List.ListName }}</h2>
+          <ul
+            class="d-flex p-0 d-flex justify-content-between"
+            v-for="(items, id) in List.todos"
+            :key="id"
+          >
+            <li class="mx-2" v-show="items.check === false">
+              <input
+                type="checkbox"
+                v-model="items.check"
+                class="form-check-input mx-2"
+              />
+              <label class="form-check-label"></label>
+              {{ items.item }}
+            </li>
+            <li
+              class="mx-2"
+              v-show="items.check === true"
+              style="text-decoration: line-through"
+            >
+              <input
+                type="checkbox"
+                v-model="items.check"
+                class="form-check-input mx-2"
+              />
+              <label class="form-check-label"></label>
+              {{ items.item }}
+            </li>
+            <div>
+              <button class="btn btn-warning shadow-sm">
+                <i class="far fa-edit"></i>
+              </button>
+              <button class="btn btn-danger mx-2 shadow-sm">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+          </ul>
+          <div class="d-flex w-100 justify-content-center">
+            <button class="btn btn-success m-1 my-3 shadow-sm">
+              <i class="fas fa-plus"> todo</i>
+            </button>
+          </div>
+          <div class="d-flex w-100 justify-content-center">
+            <button
+              class="btn btn-danger m-1 my-3 shadow-sm"
+              v-on:click="deleteList(index)"
+            >
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </div>
+        <div
+          class="col-12 col-md-5 col-lg-1 my-2 m-md-2 border shadow-sm rounded p-5 d-flex justify-content-center align-items-center"
+        >
+            <button class="btn btn-success m-1 my-3 shadow-sm">
+              <i class="fas fa-plus"></i>
+            </button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -37,50 +79,101 @@ export default {
     return {
       todosList: [
         {
-          ListName: "House todos 2",
+          ListName: "Bugs",
           todos: [
             {
-            item : 'fish',
-            check: false
-          },
-           {
-            item : 'Vegetables',
-            check: false
-          },
-          {
-            item : 'wine',
-            check: false
-          }
+              id: Math.random(),
+              item: "fish",
+              check: false,
+            },
+            {
+              id: Math.random(),
+              item: "Vegetables",
+              check: false,
+            },
+            {
+              id: Math.random(),
+              item: "wine",
+              check: false,
+            },
           ],
         },
         {
           ListName: "House todos 2",
           todos: [
             {
-            item : 'fish',
-            check: false
-          },
-           {
-            item : 'Vegetables',
-            check: false
-          },
-          {
-            item : 'wine',
-            check: false
-          }
+              id: Math.random(),
+              item: "fish",
+              check: false,
+            },
+            {
+              id: Math.random(),
+              item: "Vegetables",
+              check: false,
+            },
+            {
+              id: Math.random(),
+              item: "wine",
+              check: false,
+            },
           ],
-        }
+        },
+        {
+          ListName: "House todos 2",
+          todos: [
+            {
+              id: Math.random(),
+              item: "fish",
+              check: false,
+            },
+            {
+              id: Math.random(),
+              item: "Vegetables",
+              check: false,
+            },
+            {
+              id: Math.random(),
+              item: "wine",
+              check: false,
+            },
+          ],
+        },
+        {
+          ListName: "Market List",
+          todos: [
+            {
+              id: Math.random(),
+              item: "fish",
+              check: false,
+            },
+            {
+              id: Math.random(),
+              item: "Vegetables",
+              check: false,
+            },
+            {
+              id: Math.random(),
+              item: "wine",
+              check: false,
+            },
+          ],
+        },
       ],
     };
+  },
+  methods: {
+    deleteList: function (index) {
+      this.todosList.splice(index, 1);
+    },
   },
 };
 </script>
 
 <style>
-.t{
+.t {
   color: #42b983;
 }
-ul{
+ul {
   list-style: none;
 }
 
