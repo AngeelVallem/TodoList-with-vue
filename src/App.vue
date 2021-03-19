@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-center t">Welcome to your simple Web CheckLists</h1>
+    <h1 class="text-center t">CheckList with Vue.js</h1>
 
     <div class="container-fluid container-lg">
       <div class="row">
@@ -10,7 +10,7 @@
             v-for="(List, ListIndex) in todosList"
             :key="ListIndex"
           >
-            <h2 class="text-center">{{ List.ListName }} {{ ListIndex }}</h2>
+            <h2 class="text-center">{{ List.ListName }}</h2>
             <ul
               class="d-flex p-0 d-flex justify-content-between"
               v-for="(items, index) in List.todos"
@@ -56,7 +56,7 @@
                 <input
                   type="text"
                   class="form-control new-todo"
-                  placeholder="New TODO :D"
+                  placeholder="new todo"
                   aria-label="newTodo"
                   aria-describedby="addon-wrapping"
                   v-model="List.newItem"
@@ -67,7 +67,7 @@
                 class="btn btn-success m-1 my-3 shadow-sm"
                 v-on:click="addTodo(ListIndex)"
               >
-                <i class="fas fa-plus">todo</i>
+                <i class="fas fa-plus"></i>
               </button>
             </div>
             <div class="d-flex w-100 justify-content-center">
@@ -79,41 +79,7 @@
               </button>
             </div>
           </div>
-          <div
-            class="col-12 col-md-6 col-lg-5 m-2 border shadow-sm rounded p-0 d-flex justify-content-center align-items-center"
-          >
-            <form>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label"
-                  >Email address</label
-                >
-                <input
-                  type="email"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                />
-                <div id="emailHelp" class="form-text">
-                  We'll never share your email with anyone else.
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label"
-                  >Password</label
-                >
-                <input
-                  type="password"
-                  class="form-control"
-                  id="exampleInputPassword1"
-                />
-              </div>
-              <div class="mb-3 form-check">
-              </div>
-              <button class="h-35 btn btn-success m-1 my-3 shadow-sm">
-                <i class="fas fa-plus"></i>
-              </button>
-            </form>
-          </div>
+         
         </div>
       </div>
     </div>
@@ -127,7 +93,7 @@ export default {
     return {
       todosList: [
         {
-          ListName: "Bugs",
+          ListName: "Market List",
           newItem: "",
           todos: [
             {
@@ -148,28 +114,23 @@ export default {
           ],
         },
         {
-          ListName: "House",
+          ListName: "Todos",
           newItem: "",
           todos: [
             {
               id: Math.random(),
-              item: "fish",
+              item: "Clean my room",
               check: false,
             },
             {
               id: Math.random(),
-              item: "Vegetables",
-              check: false,
-            },
-            {
-              id: Math.random(),
-              item: "wine",
+              item: "take the dog for a walk",
               check: false,
             },
           ],
         },
         {
-          ListName: "House todos",
+          ListName: "Market List",
           newItem: "",
           todos: [
             {
